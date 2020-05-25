@@ -2,7 +2,6 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Icon } from "react-native-material-ui";
 
-
 const TopBar = ({ text }) => {
   return (
     <View style={styles.topBar}>
@@ -18,7 +17,8 @@ const TopBar = ({ text }) => {
           fontFamily: "SanvitoPro-Disp",
           marginTop: "auto",
           marginBottom: "auto",
-          fontSize: 36
+          fontSize: 36,
+          color: "#693800",
         }}
       >
         {text}
