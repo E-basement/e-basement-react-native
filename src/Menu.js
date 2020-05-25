@@ -1,7 +1,6 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 
-import TopBar from "./TopBar";
 import BrewieHeader from "./BrewieHeader";
 
 const brewers = [
@@ -25,7 +24,6 @@ const brewers = [
 const Menu = () => {
   return (
     <View style={styles.menuContainer}>
-      <TopBar text="Menu" />
       <View style={styles.menu}>
         {brewers.map(({ name, url }) => (
           <BrewieHeader key={name} name={name} imageUrl={url} />

@@ -1,14 +1,18 @@
 import { AppLoading, SplashScreen, Updates } from "expo";
 import { Asset } from "expo-asset";
 import Constants from "expo-constants";
-import React, { useState, useEffect } from "react";
-import { Animated, Button, StyleSheet, Text, View } from "react-native";
-import Intro from "./src/Intro";
-import AppNavigator from "./src/AppNavigator";
-import Menu from "./src/Menu";
-import * as Font from "expo-font";
+import React from "react";
+import { Animated, Button, StyleSheet, Text, View, BackHandler } from "react-native";
 
-// Instruct SplashScreen not to hide yet, we want to do this manually
+import Menu from "./src/Menu";
+import Pickup from "./src/Pickup";
+import * as Font from "expo-font";
+import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer } from "@react-navigation/native";
+import { Icon } from "react-native-material-ui";
+
+const Stack = createStackNavigator();
+
 SplashScreen.preventAutoHide();
 
 export default function App() {
@@ -21,16 +25,13 @@ export default function App() {
 
 function MainScreen() {
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: "plum",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <Menu />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Menu" component={Menu} options={screenOptions} />
+      </Stack.Navigator>
+    </NavigationContainer>
+
+    // </View>
   );
 }
 
@@ -66,7 +67,6 @@ function AnimatedSplashScreen({ children, image }) {
   );
 
   React.useEffect(() => {
- 
     if (isAppReady) {
       Animated.timing(animation, {
         toValue: 0,
@@ -80,7 +80,7 @@ function AnimatedSplashScreen({ children, image }) {
     SplashScreen.hide();
     try {
       // Load stuff
-       
+
       await Promise.all([
         Font.loadAsync({
           "SanvitoPro-Disp": require("./assets/fonts/SanvitoPro-Disp.ttf"),
@@ -128,29 +128,25 @@ function AnimatedSplashScreen({ children, image }) {
   );
 }
 
-
-class ErrorBoundary extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = { hasError: false }
-  }
-
-  static getDerivedStateFromError(error) {
-    // Update state so the next render will show the fallback UI.
-    return { hasError: true }
-  }
-
-  componentDidCatch(error, errorInfo) {
-    // You can also log the error to an error reporting service
-    logErrorToMyService(error, errorInfo)
-  }
-
-  render() {
-    if (this.state.hasError) {
-      // You can render any custom fallback UI
-      return <h1>Something went wrong.</h1>
-    }
-
-    return this.props.children
-  }
-}
+const screenOptions = {
+  headerStyle: {
+    backgroundColor: "#D99311",
+  },
+  headerTitleStyle: {
+    backgroundColor: "#D99311",
+    fontFamily: "SanvitoPro-Disp",
+    marginTop: "auto",
+    marginBottom: "auto",
+    fontSize: 36,
+    color: "#693800",
+  },
+  headerRight: (props) => <View style={{ height: "100%" }}></View>,
+  headerLeft: (props) => (
+    <View onClick={() =>  {}} style={{ margin: "auto" }}>
+      <Icon
+        name="arrow-back"
+        style={{ fontSize: 36, marginLeft: 10 }}
+      />
+    </View>
+  ),
+};
