@@ -1,15 +1,14 @@
-import { AppLoading, SplashScreen, Updates } from "expo";
-import { Asset } from "expo-asset";
-import Constants from "expo-constants";
+import {  SplashScreen } from "expo";
 import React from "react";
-import { Animated, StyleSheet, View, TouchableOpacity } from "react-native";
-
-import Menu from "./src/Menu";
-import Pickup from "./src/Pickup";
-import * as Font from "expo-font";
+import {  View, TouchableOpacity } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { Icon } from "react-native-material-ui";
+
+import Menu from "./src/Menu";
+import Pickup from "./src/Pickup";
+import {LOGO_URL} from './src/Constants';
+import AnimatedAppLoader from './src/AnimatedAppLoader';
 
 const Stack = createStackNavigator();
 
@@ -17,7 +16,7 @@ SplashScreen.preventAutoHide();
 
 export default function App() {
   return (
-    <AnimatedAppLoader image={{ uri: Constants.manifest.splash.image }}>
+    <AnimatedAppLoader image={{ uri: LOGO_URL }}>
       <MainScreen />
     </AnimatedAppLoader>
   );
@@ -27,112 +26,22 @@ function MainScreen() {
   return (
     <NavigationContainer >
       <Stack.Navigator>
-        <Stack.Screen name="Menu" component={Menu} options={screenOptions} />
+        <Stack.Screen name="Menu" component={Menu} options={topBarOptions} />
 
         <Stack.Screen
           name="Pickup"
           component={Pickup}
-          options={screenOptions}
+          options={topBarOptions}
         />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
 
-function AnimatedAppLoader({ children, image }) {
-  const [isSplashReady, setSplashReady] = React.useState(false);
 
-  const startAsync = React.useMemo(
-    // If you use a local image with require(...), use `Asset.fromModule`
-    () => () => Asset.fromURI(image).downloadAsync(),
-    [image]
-  );
 
-  const onFinish = React.useMemo(() => setSplashReady(true), []);
 
-  if (!isSplashReady) {
-    return (
-      <AppLoading
-        startAsync={startAsync}
-        onError={console.error}
-        onFinish={onFinish}
-      />
-    );
-  }
-
-  return <AnimatedSplashScreen image={image}>{children}</AnimatedSplashScreen>;
-}
-
-function AnimatedSplashScreen({ children, image }) {
-  const animation = React.useMemo(() => new Animated.Value(1), []);
-  const [isAppReady, setAppReady] = React.useState(false);
-  const [isSplashAnimationComplete, setAnimationComplete] = React.useState(
-    false
-  );
-
-  React.useEffect(() => {
-    if (isAppReady) {
-      Animated.timing(animation, {
-        toValue: 0,
-        duration: 5,
-        useNativeDriver: true,
-      }).start(() => setAnimationComplete(true));
-    }
-  }, [isAppReady]);
-
-  const onImageLoaded = React.useMemo(() => async () => {
-    SplashScreen.hide();
-    try {
-      // Load stuff
-
-      await Promise.all([
-        Font.loadAsync({
-          "SanvitoPro-Disp": require("./assets/fonts/SanvitoPro-Disp.ttf"),
-        }),
-      ]);
-    } catch (e) {
-      // handle errors
-    } finally {
-      setAppReady(true);
-    }
-  });
-
-  return (
-    <View style={{ flex: 1 }}>
-      {isAppReady && children}
-      {!isSplashAnimationComplete && (
-        <Animated.View
-          pointerEvents="none"
-          style={[
-            StyleSheet.absoluteFill,
-            {
-              backgroundColor: Constants.manifest.splash.backgroundColor,
-              opacity: animation,
-            },
-          ]}
-        >
-          <Animated.Image
-            style={{
-              width: "100%",
-              height: "100%",
-              resizeMode: Constants.manifest.splash.resizeMode || "contain",
-              transform: [
-                {
-                  scale: animation,
-                },
-              ],
-            }}
-            source={image}
-            onLoadEnd={onImageLoaded}
-            fadeDuration={0}
-          />
-        </Animated.View>
-      )}
-    </View>
-  );
-}
-
-const screenOptions = {
+const topBarOptions = {
   headerStyle: {
     backgroundColor: "#D99311",
   },

@@ -2,7 +2,7 @@ const FONT_COLOR =  "#693800";
 const FONT_FAMILY = "SanvitoPro-Disp";
 const BACKGROUND_COLOR = "#FFFDD0";
 const CONTAINER_BACKGROUND_COLOR = "#F8F0C6";
-
+const LOGO_URL = "https://cdn.discordapp.com/attachments/707186726896140319/714517416755069008/beer-logo-vector-2.png";
 
 const BREWERS = [
   {
@@ -30,5 +30,6 @@ export {
   FONT_FAMILY,
   BACKGROUND_COLOR,
   BREWERS,
-  CONTAINER_BACKGROUND_COLOR
+  CONTAINER_BACKGROUND_COLOR,
+  LOGO_URL
 } 
