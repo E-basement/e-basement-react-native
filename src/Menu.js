@@ -21,12 +21,13 @@ const brewers = [
   },
 ];
 
-const Menu = () => {
+const Menu = ({navigation}) => {
+  console.log(navigation)
   return (
     <View style={styles.menuContainer}>
       <View style={styles.menu}>
         {brewers.map(({ name, url }) => (
-          <BrewieHeader key={name} name={name} imageUrl={url} />
+          <BrewieHeader key={name} name={name} imageUrl={url} onClick={() =>navigation.navigate('Pickup')} />
         ))}
       </View>
     </View>

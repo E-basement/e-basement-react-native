@@ -3,9 +3,9 @@ import { Text, View, Image } from "react-native";
 
 import SimpleContainer from "./SimpleContainer";
 
-const BrewieHeader = ({ name, imageUrl }) => {
+const BrewieHeader = ({ name, imageUrl, onClick }) => {
   return (
-    <View>
+    <View onClick={onClick}>
       <Image
         source={{ uri: imageUrl }}
         style={{
