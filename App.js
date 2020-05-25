@@ -2,14 +2,7 @@ import { AppLoading, SplashScreen, Updates } from "expo";
 import { Asset } from "expo-asset";
 import Constants from "expo-constants";
 import React from "react";
-import {
-  Animated,
-  Button,
-  StyleSheet,
-  Text,
-  View,
-  BackHandler,
-} from "react-native";
+import { Animated, StyleSheet, View, TouchableOpacity } from "react-native";
 
 import Menu from "./src/Menu";
 import Pickup from "./src/Pickup";
@@ -43,8 +36,6 @@ function MainScreen() {
         />
       </Stack.Navigator>
     </NavigationContainer>
-
-    // </View>
   );
 }
 
@@ -157,9 +148,9 @@ const screenOptions = {
   headerLeft: (props) => (
     <View>
       {props.onPress && (
-        <View onClick={() => props.onPress()} style={{ margin: "auto" }}>
+        <TouchableOpacity onPress={() => props.onPress()} style={{ margin: "auto" }}>
           <Icon name="arrow-back" style={{ fontSize: 36, marginLeft: 10 }} />
-        </View>
+        </TouchableOpacity>
       )}
     </View>
   ),

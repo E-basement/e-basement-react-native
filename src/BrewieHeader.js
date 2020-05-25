@@ -1,11 +1,12 @@
 import React from "react";
-import { Text, View, Image } from "react-native";
+import { Text, View, Image, TouchableOpacity } from "react-native";
 
+import { FONT_COLOR, FONT_FAMILY } from "./Constants";
 import SimpleContainer from "./SimpleContainer";
 
 const BrewieHeader = ({ name, imageUrl, onClick }) => {
   return (
-    <View onClick={onClick}>
+    <TouchableOpacity onPress={onClick}>
       <Image
         source={{ uri: imageUrl }}
         style={{
@@ -16,6 +17,7 @@ const BrewieHeader = ({ name, imageUrl, onClick }) => {
           right: 0,
           top: 35,
         }}
+        
       />
       <SimpleContainer
         key={name}
@@ -29,8 +31,8 @@ const BrewieHeader = ({ name, imageUrl, onClick }) => {
       >
         <Text
           style={{
-            color: "#693800",
-            fontFamily: "SanvitoPro-Disp",
+            color: FONT_COLOR,
+            fontFamily: FONT_FAMILY,
             fontSize: 50,
             paddingTop: 20,
             paddingBottom: 20,
@@ -40,7 +42,7 @@ const BrewieHeader = ({ name, imageUrl, onClick }) => {
           {name}
         </Text>
       </SimpleContainer>
-    </View>
+    </TouchableOpacity>
   );
 };
 
