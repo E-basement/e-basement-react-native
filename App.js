@@ -25,7 +25,7 @@ export default function App() {
 
 function MainScreen() {
   return (
-    <NavigationContainer>
+    <NavigationContainer >
       <Stack.Navigator>
         <Stack.Screen name="Menu" component={Menu} options={screenOptions} />
 

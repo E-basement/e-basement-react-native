@@ -1,6 +1,6 @@
 import { View } from "react-native";
 import React from "react";
-import {FONT_COLOR, BACKGROUND_COLOR} from './Constants';
+import { FONT_COLOR, CONTAINER_BACKGROUND_COLOR } from "./Constants";
 
 const SimpleContainer = ({ children, style }) => {
   return (
@@ -9,12 +9,12 @@ const SimpleContainer = ({ children, style }) => {
         width: "90%",
         margin: "auto",
         padding: 20,
-        borderColor:FONT_COLOR,
-        borderWidth:4,
-        borderStyle:"solid",
+        borderColor: FONT_COLOR,
+        borderWidth: 4,
+        borderStyle: "solid",
         borderRadius: 25,
-        backgroundColor:BACKGROUND_COLOR,
-        ...style
+        backgroundColor: CONTAINER_BACKGROUND_COLOR,
+        ...style,
       }}
     >
       {children}

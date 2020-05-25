@@ -2,20 +2,18 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 
 import BrewieHeader from "./BrewieHeader";
-import {BREWERS, BACKGROUND_COLOR} from './Constants';
-
+import { BREWERS, BACKGROUND_COLOR } from "./Constants";
 
 const Menu = ({ navigation }) => {
-  console.log(navigation);
   return (
     <View style={styles.menuContainer}>
       <View style={styles.menu}>
-        {BREWERS.map(({ name, url }) => (
+        {BREWERS.map(({ itemId, name, url }) => (
           <BrewieHeader
             key={name}
             name={name}
             imageUrl={url}
-            onClick={() => navigation.navigate("Pickup")}
+            onClick={() => navigation.navigate("Pickup", { itemId })}
           />
         ))}
       </View>
@@ -34,5 +32,4 @@ const styles = StyleSheet.create({
   menu: {
     padding: 10,
   },
-
 });

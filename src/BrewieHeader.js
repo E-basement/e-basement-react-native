@@ -4,21 +4,9 @@ import { Text, View, Image, TouchableOpacity } from "react-native";
 import { FONT_COLOR, FONT_FAMILY } from "./Constants";
 import SimpleContainer from "./SimpleContainer";
 
-const BrewieHeader = ({ name, imageUrl, onClick }) => {
+const BrewieHeader = ({ name, imageUrl, onClick, style, imageStyle }) => {
   return (
     <TouchableOpacity onPress={onClick}>
-      <Image
-        source={{ uri: imageUrl }}
-        style={{
-          height: 120,
-          width: 120,
-          position: "absolute",
-          zIndex: 1,
-          right: 0,
-          top: 35,
-        }}
-        
-      />
       <SimpleContainer
         key={name}
         style={{
@@ -26,17 +14,29 @@ const BrewieHeader = ({ name, imageUrl, onClick }) => {
           marginLeft: 10,
           marginBottom: 20,
           width: "80%",
-          paddingLeft: 5,
+          paddingLeft: 15,
+          paddingTop: 42,
+          paddingBottom: 42,
+          ...style,
         }}
       >
+        <Image
+          source={{ uri: imageUrl }}
+          style={{
+            height: 120,
+            width: 120,
+            position: "absolute",
+            zIndex: 1,
+            right: -60,
+            top: 15,
+            ...imageStyle,
+          }}
+        />
         <Text
           style={{
             color: FONT_COLOR,
             fontFamily: FONT_FAMILY,
             fontSize: 50,
-            paddingTop: 20,
-            paddingBottom: 20,
-            paddingLeft: 10,
           }}
         >
           {name}
