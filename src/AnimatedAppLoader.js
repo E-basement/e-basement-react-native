@@ -4,9 +4,7 @@ import React from "react";
 import { Animated, StyleSheet, View } from "react-native";
 import * as Font from "expo-font";
 
-
-import {FONT_COLOR, FONT_FAMILY, BACKGROUND_COLOR} from './Constants';
-
+import { FONT_COLOR, FONT_FAMILY, BACKGROUND_COLOR } from "./Constants";
 
 function AnimatedAppLoader({ children, image }) {
   const [isSplashReady, setSplashReady] = React.useState(false);
@@ -51,51 +49,60 @@ function AnimatedSplashScreen({ children, image }) {
   const onImageLoaded = React.useMemo(() => async () => {
     SplashScreen.hide();
     try {
-      await Promise.all([
-        Font.loadAsync({
-          "SanvitoPro-Disp": require("../assets/fonts/SanvitoPro-Disp.ttf"),
-        }),
-      ]);
+      await Font.loadAsync({
+        "SanvitoPro-Disp": require("../assets/fonts/SanvitoPro-Disp.ttf"),
+      });
     } catch (e) {
       // handle errors
     } finally {
       setAppReady(true);
     }
   });
-  
+
   return (
-    <View style={{ flex: 1, backgroundColor:BACKGROUND_COLOR }}>
+    <View style={{ flex: 1, backgroundColor: BACKGROUND_COLOR }}>
       {isAppReady && children}
       {!isSplashAnimationComplete && (
-
         <Animated.View
           pointerEvents="none"
           style={[
             StyleSheet.absoluteFill,
             {
-              backgroundColor:BACKGROUND_COLOR,
-            }
+              backgroundColor: BACKGROUND_COLOR,
+            },
           ]}
         >
           <Animated.Image
             style={{
-              width: '75%',
-              maxWidth:520,
+              width: "75%",
+              maxWidth: 520,
               height: "60%",
-              margin:'auto',
+              margin: "auto",
+              marginLeft:'auto',
+              marginRight:'auto',
               resizeMode: Constants.manifest.splash.resizeMode || "contain",
             }}
             source={image}
-
             onLoadEnd={onImageLoaded}
             fadeDuration={0}
           />
-          <Animated.Text style={{ opacity:animation, textAlign:'center',fontSize:85,width: "100%", height:'40%', fontFamily:FONT_FAMILY, color:FONT_COLOR}} >e-basement</Animated.Text>
+          {isAppReady && <Animated.Text
+            style={{
+              opacity: animation,
+              textAlign: "center",
+              fontSize: 85,
+              width: "100%",
+              height: "40%",
+              fontFamily: FONT_FAMILY ,
+              color: FONT_COLOR,
+            }}
+          >
+            e-basement
+          </Animated.Text>}
         </Animated.View>
       )}
     </View>
   );
 }
-
 
 export default AnimatedAppLoader;
