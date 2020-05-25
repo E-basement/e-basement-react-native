@@ -1,14 +1,19 @@
-import {  SplashScreen } from "expo";
+import { SplashScreen } from "expo";
 import React from "react";
-import {  View, TouchableOpacity } from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { Icon } from "react-native-material-ui";
 
 import Menu from "./src/Menu";
 import Pickup from "./src/Pickup";
-import {LOGO_URL} from './src/Constants';
-import AnimatedAppLoader from './src/AnimatedAppLoader';
+import {
+  FONT_COLOR,
+  LOGO_URL,
+  FONT_FAMILY,
+  TOPBAR_BACKGROUND_COLOR,
+} from "./src/Constants";
+import AnimatedAppLoader from "./src/AnimatedAppLoader";
 
 const Stack = createStackNavigator();
 
@@ -24,7 +29,7 @@ export default function App() {
 
 function MainScreen() {
   return (
-    <NavigationContainer >
+    <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Menu" component={Menu} options={topBarOptions} />
 
@@ -38,26 +43,26 @@ function MainScreen() {
   );
 }
 
-
-
-
 const topBarOptions = {
   headerStyle: {
-    backgroundColor: "#D99311",
+    backgroundColor: TOPBAR_BACKGROUND_COLOR,
   },
   headerTitleStyle: {
-    backgroundColor: "#D99311",
-    fontFamily: "SanvitoPro-Disp",
+    backgroundColor: TOPBAR_BACKGROUND_COLOR,
+    fontFamily: FONT_FAMILY,
     marginTop: "auto",
     marginBottom: "auto",
     fontSize: 36,
-    color: "#693800",
+    color: FONT_COLOR,
   },
   headerRight: (props) => <View style={{ height: "100%" }}></View>,
   headerLeft: (props) => (
     <View>
       {props.onPress && (
-        <TouchableOpacity onPress={() => props.onPress()} style={{ margin: "auto" }}>
+        <TouchableOpacity
+          onPress={() => props.onPress()}
+          style={{ margin: "auto" }}
+        >
           <Icon name="arrow-back" style={{ fontSize: 36, marginLeft: 10 }} />
         </TouchableOpacity>
       )}

@@ -52,6 +52,9 @@ function AnimatedSplashScreen({ children, image }) {
       await Font.loadAsync({
         "SanvitoPro-Disp": require("../assets/fonts/SanvitoPro-Disp.ttf"),
       });
+      await Font.loadAsync({
+        "SanvitoPro-Bold": require("../assets/fonts/SanvitoPro-BoldDisp.otf"),
+      });
     } catch (e) {
       // handle errors
     } finally {
