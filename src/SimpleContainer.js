@@ -6,7 +6,7 @@ const SimpleContainer = ({ children, style }) => {
   return (
     <View
       style={{
-        width: "90%",
+        
         margin: "auto",
         padding: 20,
         borderColor: FONT_COLOR,

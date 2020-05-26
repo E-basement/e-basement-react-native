@@ -1,12 +1,12 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, ScrollView } from "react-native";
 
 import BrewieHeader from "./BrewieHeader";
 import { BREWERS, BACKGROUND_COLOR } from "./Constants";
 
 const Menu = ({ navigation }) => {
   return (
-    <View style={styles.menuContainer}>
+    <ScrollView style={styles.menuContainer}>
       <View style={styles.menu}>
         {BREWERS.map(({ itemId, name, url }) => (
           <BrewieHeader
@@ -17,7 +17,7 @@ const Menu = ({ navigation }) => {
           />
         ))}
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
