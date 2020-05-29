@@ -31,7 +31,7 @@ const getNewCheckout = (checkout, itemId, addAmount, beers) => {
 
   const newCheckout = {
     items: [
-      ...checkout.items.filter((item) => item.id === itemId),
+      ...checkout.items.filter((item) => item.id !== itemId),
       {
         ...itemInCheckout,
         amount: (itemInCheckout?.amount || 0) + addAmount,

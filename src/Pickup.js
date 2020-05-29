@@ -1,17 +1,19 @@
 import React from "react";
-import { Text, View, Image, ScrollView } from "react-native";
-import { BREWERS, FONT_COLOR, FONT_FAMILY } from "./Constants";
+import { Text, View, Image, ScrollView, TouchableOpacity } from "react-native";
+
+import { FONT_COLOR, FONT_FAMILY } from "./Constants";
 import BrewieHeader from "./BrewieHeader";
 import { BACKGROUND_COLOR } from "./Constants";
 import SimpleContainer from "./SimpleContainer";
 import { Icon } from "react-native-material-ui";
 import PriceText from "./PriceText";
 import { useBrewersContext } from "./context/BrewersContext";
+import { useCheckoutContext } from "./context/CheckoutContext";
 
 const Pickup = ({ route }) => {
   const { itemId } = route.params;
   const brewers = useBrewersContext();
-
+  const { addItem } = useCheckoutContext();
   const brewer = brewers.find((brewer) => brewer.itemId == itemId);
 
   return (
@@ -38,6 +40,7 @@ const Pickup = ({ route }) => {
             url={url}
             price={price}
             name={name}
+            onAddItemClick={() => addItem(id)}
           />
         ))}
       </View>
@@ -45,7 +48,7 @@ const Pickup = ({ route }) => {
   );
 };
 
-const _BeerContainer = ({ beerId, url, price, name }) => {
+const _BeerContainer = ({ beerId, url, price, name, onAddItemClick }) => {
   return (
     <SimpleContainer
       style={{
@@ -81,15 +84,18 @@ const _BeerContainer = ({ beerId, url, price, name }) => {
         {name}
       </Text>
       <PriceText price={price} />
-      <Icon
-        name="add-circle-outline"
-        style={{
-          margin: "auto",
-          fontSize: 36,
-          marginLeft: "auto",
-          marginRight: "auto",
-        }}
-      />
+
+      <TouchableOpacity onPress={onAddItemClick}>
+        <Icon
+          name="add-circle-outline"
+          style={{
+            margin: "auto",
+            fontSize: 36,
+            marginLeft: "auto",
+            marginRight: "auto",
+          }}
+        />
+      </TouchableOpacity>
     </SimpleContainer>
   );
 };
