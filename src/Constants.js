@@ -6,6 +6,11 @@ const TOPBAR_BACKGROUND_COLOR = "#D99311";
 const LOGO_URL =
   "https://cdn.discordapp.com/attachments/707186726896140319/714517416755069008/beer-logo-vector-2.png";
 
+const SMALL_CONTAINER_BACKGROUND_COLOR = '#FAFFE4';
+const SMALL_CONTAINER_BORDER_COLOR = '#693800';
+const DEFAULT_CURRENCY = "PLN";
+
+
 const BREWERS = [
   {
     itemId: 1,
@@ -76,7 +81,7 @@ const BREWERS = [
     ],
   },
   {
-    itemId: 2,
+    itemId: 15,
     name: "Stu Mostów",
     beers: [
       {
@@ -94,7 +99,7 @@ const BREWERS = [
       "https://cdn.discordapp.com/attachments/707186726896140319/714456046688534578/100Mostow.png",
   },
   {
-    itemId: 3,
+    itemId: 16,
     beers: [],
     name: "AleBrowar",
     url:
@@ -110,4 +115,7 @@ export {
   CONTAINER_BACKGROUND_COLOR,
   LOGO_URL,
   TOPBAR_BACKGROUND_COLOR,
+  SMALL_CONTAINER_BACKGROUND_COLOR,
+  SMALL_CONTAINER_BORDER_COLOR,
+  DEFAULT_CURRENCY
 };
