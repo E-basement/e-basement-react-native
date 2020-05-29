@@ -1,25 +1,21 @@
 import React from "react";
 import { Icon } from "react-native-material-ui";
 import { View, TouchableOpacity } from "react-native";
-import {
-  FONT_COLOR,
-  FONT_FAMILY,
-  TOPBAR_BACKGROUND_COLOR,
-} from "./Constants";
-import { useCheckoutContext } from "./context/CheckoutContext";
-import PriceText from "./PriceText";
-import SmallContainer from './SmallContainer';
+import { useNavigation } from "@react-navigation/native";
 
-const HeaderRight = (props) => {
+import PriceText from "./PriceText";
+import SmallContainer from "./SmallContainer";
+import { FONT_COLOR, FONT_FAMILY, TOPBAR_BACKGROUND_COLOR } from "./Constants";
+import { useCheckoutContext } from "./context/CheckoutContext";
+
+const HeaderRight = () => {
   const { getSumPrice } = useCheckoutContext();
+  const navigation = useNavigation();
 
   return (
-    <View
-      style={{
-        height: "100%",
-        display: "flex",
-        flexDirection: "row",
-      }}
+    <TouchableOpacity
+      onPress={() => navigation.navigate("Cart")}
+      style={{ height: "100%", display: "flex", flexDirection: "row" }}
     >
       <SmallContainer
         style={{
@@ -40,15 +36,15 @@ const HeaderRight = (props) => {
           marginBottom: "auto",
           marginTop: "auto",
           marginRight: 15,
-          marginLeft: 5
+          marginLeft: 5,
         }}
       />
-    </View>
+    </TouchableOpacity>
   );
 };
 
-
 const HeaderLeft = (props) => {
+
   return (
     <View>
       {props.onPress && (
