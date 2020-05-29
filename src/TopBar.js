@@ -1,55 +1,82 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
 import { Icon } from "react-native-material-ui";
+import { View, TouchableOpacity } from "react-native";
+import {
+  FONT_COLOR,
+  FONT_FAMILY,
+  TOPBAR_BACKGROUND_COLOR,
+} from "./Constants";
+import { useCheckoutContext } from "./context/CheckoutContext";
+import PriceText from "./PriceText";
+import SmallContainer from './SmallContainer';
 
-const TopBar = ({ text }) => {
+const HeaderRight = (props) => {
+  const { getSumPrice } = useCheckoutContext();
+
   return (
-    <View style={styles.topBar}>
-      <View onClick={() => {}} style={styles.backButton}>
-        <Icon
-          name="arrow-back"
-          style={{ fontSize: 36, marginTop: 22, marginLeft: 10 }}
-        />
-      </View>
-
-      <Text
+    <View
+      style={{
+        height: "100%",
+        display: "flex",
+        flexDirection: "row",
+      }}
+    >
+      <SmallContainer
         style={{
-          fontFamily: "SanvitoPro-Disp",
+          height: 25,
+          margin: 5,
           marginTop: "auto",
-          marginBottom: "auto",
-          fontSize: 36,
-          color: "#693800",
+          paddingLeft: 5,
+          paddingRight: 5,
         }}
       >
-        {text}
-      </Text>
+        <PriceText price={getSumPrice()} />
+      </SmallContainer>
+
+      <Icon
+        name="shopping-basket"
+        style={{
+          fontSize: 40,
+          marginBottom: "auto",
+          marginTop: "auto",
+          marginRight: 15,
+          marginLeft: 5
+        }}
+      />
     </View>
   );
 };
 
-export default TopBar;
 
-const styles = StyleSheet.create({
-  topBar: {
-    height: 80,
-    backgroundColor: "#D99311",
-    display: "flex",
-    flexDirection: "row",
+const HeaderLeft = (props) => {
+  return (
+    <View>
+      {props.onPress && (
+        <TouchableOpacity
+          onPress={() => props.onPress()}
+          style={{ margin: "auto" }}
+        >
+          <Icon name="arrow-back" style={{ fontSize: 36, marginLeft: 10 }} />
+        </TouchableOpacity>
+      )}
+    </View>
+  );
+};
+
+const topBarOptions = {
+  headerStyle: {
+    backgroundColor: TOPBAR_BACKGROUND_COLOR,
   },
-  topBarText: {
-    color: "#693800",
-    fontWeight: "bold",
-    fontSize: 30,
+  headerTitleStyle: {
+    backgroundColor: TOPBAR_BACKGROUND_COLOR,
+    fontFamily: FONT_FAMILY,
     marginTop: "auto",
     marginBottom: "auto",
-    fontFamily: "SanvitoPro-Disp",
+    fontSize: 36,
+    color: FONT_COLOR,
   },
-  backButton: {
-    backgroundColor: "#D99311",
-    width: 65,
-  },
+  headerRight: (props) => <HeaderRight {...props} />,
+  headerLeft: (props) => <HeaderLeft {...props} />,
+};
 
-  red: {
-    color: "red",
-  },
-});
+export default topBarOptions;
