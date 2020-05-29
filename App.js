@@ -1,6 +1,5 @@
 import { SplashScreen } from "expo";
 import React from "react";
-import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 
 import Menu from "./src/Menu";
@@ -11,31 +10,33 @@ import { BrewersContextProvider } from "./src/context/BrewersContext";
 import { CheckoutContextProvider } from "./src/context/CheckoutContext";
 import Topbar from "./src/TopBar";
 import Cart from "./src/Cart";
-
-const Stack = createStackNavigator();
+import Stack from "./src/context/stackNavigator";
 
 // SplashScreen.preventAutoHide();
 
 export default function App() {
   return (
     <AnimatedAppLoader image={{ uri: LOGO_URL }}>
-      <BrewersContextProvider>
-        <CheckoutContextProvider>
-          <MainScreen />
-        </CheckoutContextProvider>
-      </BrewersContextProvider>
+      <Providers>
+        <MainScreen />
+      </Providers>
     </AnimatedAppLoader>
   );
 }
 
+const Providers = ({ children }) => (
+  <BrewersContextProvider>
+    <CheckoutContextProvider>
+      <NavigationContainer>{children}</NavigationContainer>
+    </CheckoutContextProvider>
+  </BrewersContextProvider>
+);
 function MainScreen() {
   return (
-    <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Menu" component={Menu} options={Topbar} />
         <Stack.Screen name="Pickup" component={Pickup} options={Topbar} />
         <Stack.Screen name="Cart" component={Cart} options={Topbar} />
       </Stack.Navigator>
-    </NavigationContainer>
   );
 }
