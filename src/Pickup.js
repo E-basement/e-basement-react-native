@@ -6,12 +6,14 @@ import { BACKGROUND_COLOR } from "./Constants";
 import SimpleContainer from "./SimpleContainer";
 import { Icon } from "react-native-material-ui";
 import PriceText from "./PriceText";
+import { useBrewersContext } from "./context/BrewersContext";
 
 const Pickup = ({ route }) => {
   const { itemId } = route.params;
-  const brewer = BREWERS.find((brewer) => brewer.itemId == itemId);
+  const brewers = useBrewersContext();
 
-  const { beers } = brewer;
+  const brewer = brewers.find((brewer) => brewer.itemId == itemId);
+
   return (
     <ScrollView style={{ backgroundColor: BACKGROUND_COLOR, height: "100%" }}>
       <BrewieHeader
@@ -21,8 +23,15 @@ const Pickup = ({ route }) => {
         imageUrl={brewer.url}
         onClick={() => {}}
       />
-      <View style={{ display: "flex", flexWrap: "wrap", flexDirection: "row", paddingBottom:30 }}>
-        {beers.map(({ id, url, price, name }) => (
+      <View
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          flexDirection: "row",
+          paddingBottom: 30,
+        }}
+      >
+        {brewer.beers.map(({ id, url, price, name }) => (
           <_BeerContainer
             key={id}
             beerId={id}
@@ -46,8 +55,8 @@ const _BeerContainer = ({ beerId, url, price, name }) => {
         flexDirection: "column",
         paddingBottom: 0,
         paddingTop: 5,
-        marginLeft:"auto",
-        marginRight:"auto"
+        marginLeft: "auto",
+        marginRight: "auto",
       }}
     >
       <Image
@@ -57,7 +66,7 @@ const _BeerContainer = ({ beerId, url, price, name }) => {
           width: 40,
           margin: "auto",
           marginLeft: "auto",
-          marginRight: "auto"
+          marginRight: "auto",
         }}
       />
       <Text

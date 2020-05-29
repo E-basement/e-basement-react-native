@@ -14,6 +14,7 @@ import {
   TOPBAR_BACKGROUND_COLOR,
 } from "./src/Constants";
 import AnimatedAppLoader from "./src/AnimatedAppLoader";
+import { BrewersContextProvider } from "./src/context/BrewersContext";
 
 const Stack = createStackNavigator();
 
@@ -22,7 +23,9 @@ SplashScreen.preventAutoHide();
 export default function App() {
   return (
     <AnimatedAppLoader image={{ uri: LOGO_URL }}>
-      <MainScreen />
+      <BrewersContextProvider>
+        <MainScreen />
+      </BrewersContextProvider>
     </AnimatedAppLoader>
   );
 }
