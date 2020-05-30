@@ -17,14 +17,14 @@ const useCheckout = () => {
     ),
     currency: checkout.items[0]?.currency || DEFAULT_CURRENCY,
   });
-
+  const buy = () => setCheckout({ items: [] });
   const getCheckout = () => checkout;
 
-  return { getCheckout, addItem, getSumPrice };
+  return { getCheckout, addItem, getSumPrice, buy };
 };
 
 const getNewCheckout = (checkout, itemId, addAmount, beers) => {
-  console.log(beers);
+  
   const itemInCheckout =
     checkout.items.find((item) => item.id === itemId) ||
     beers.find((item) => item.id === itemId);
@@ -34,7 +34,7 @@ const getNewCheckout = (checkout, itemId, addAmount, beers) => {
       ...checkout.items.filter((item) => item.id !== itemId),
       {
         ...itemInCheckout,
-        amount: (itemInCheckout?.amount || 0) + addAmount,
+        amount: (itemInCheckout?.amount || 0) + addAmount || 0,
       },
     ].filter((item) => item.amount > 0),
   };
