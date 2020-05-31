@@ -42,6 +42,7 @@ const Pickup = ({ route }) => {
             url={url}
             price={price}
             name={name}
+            onBeerClick={()=>navigation.navigate("Beer", { beerId:id})}
             onAddItemClick={() => addItem(id)}
           />
         ))}
@@ -50,7 +51,7 @@ const Pickup = ({ route }) => {
   );
 };
 
-const _BeerContainer = ({ beerId, url, price, name, onAddItemClick }) => {
+const _BeerContainer = ({ beerId, url, price, name, onAddItemClick, onBeerClick }) => {
   return (
     <SimpleContainer
       style={{
@@ -64,6 +65,7 @@ const _BeerContainer = ({ beerId, url, price, name, onAddItemClick }) => {
         marginRight: "auto",
       }}
     >
+       <TouchableOpacity onPress={onBeerClick}>
       <Image
         source={{ uri: url }}
         style={{
@@ -85,6 +87,7 @@ const _BeerContainer = ({ beerId, url, price, name, onAddItemClick }) => {
       >
         {name}
       </Text>
+      </TouchableOpacity>
       <PriceText price={price} />
 
       <TouchableOpacity onPress={onAddItemClick}>

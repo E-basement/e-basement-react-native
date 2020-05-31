@@ -33,6 +33,7 @@ const BreweryDetails = ({ route }) => {
           marginRight: "auto",
           paddingLeft: 8,
           paddingRight: 8,
+          maxWidth:1000
         }}
       >
         <_BreweryInfoText text={brewery.description} style={{ marginTop: 5, fontSize: 24 }} />

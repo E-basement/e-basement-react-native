@@ -31,6 +31,8 @@ const BREWERIES = [
           currency: "PLN",
           amount: 500,
         },
+        description:"Profesor is… an ideally constructed balance between maltiness and the taste of noble hops. The slightly sweet finish coming from cornmeal is countered by the hops bitterness. Dark-straw color and shapely white foam create a harmonious composition which is a refreshing temptation after an exhausting day of work.",
+        ingredients:"water, malts (Pilsen, Munich, Caramel Pils), hops (Sybilla, Lubelski, Hallertau Tradition), corn porridge, yeast(San Diego Super)"
       },
       {
         id: 2,
