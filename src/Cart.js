@@ -4,19 +4,15 @@ import { Icon } from "react-native-material-ui";
 
 import { useCheckoutContext } from "./context/CheckoutContext";
 import SimpleContainer from "./SimpleContainer";
-import {
-  BACKGROUND_COLOR,
-  FONT_FAMILY,
-  FONT_COLOR,
-  TOPBAR_BACKGROUND_COLOR,
-} from "./Constants";
+import { BACKGROUND_COLOR, FONT_FAMILY, FONT_COLOR } from "./Constants";
 import PriceText from "./PriceText";
-import SmallContainer from "./SmallContainer";
+
+import CartBottomBar from "./CartBottomBar";
 
 const Cart = () => {
   const { getCheckout, getSumPrice, addItem, buy } = useCheckoutContext();
   const items = getCheckout().items;
-  if (!!items && !items.length) return <_EmptyCardText />;
+  if (!!items && !items.length) return <_EmptyCartText />;
 
   return (
     <View style={{ backgroundColor: BACKGROUND_COLOR, minHeight: "100%" }}>
@@ -24,7 +20,8 @@ const Cart = () => {
         style={{
           backgroundColor: BACKGROUND_COLOR,
           paddingTop: 10,
-          paddingBottom: 10,
+          paddingBottom: 100,
+          marginBottom:150
         }}
       >
         {items.map(({ id, url, price, name, amount }) => (
@@ -39,83 +36,11 @@ const Cart = () => {
           />
         ))}
       </ScrollView>
-      <_BottomBar totalPrice={getSumPrice()} onBuy={buy} />
+      <CartBottomBar totalPrice={getSumPrice()} onBuy={buy} />
     </View>
   );
 };
 
-const _BottomBar = ({ totalPrice, onBuy }) => {
-  return (
-    <View
-      style={{
-        width: "100%",
-        height: 150,
-        backgroundColor: TOPBAR_BACKGROUND_COLOR,
-        position: "absolute",
-        bottom: 0,
-        display: "flex",
-        flexDirection: "row",
-      }}
-    >
-      <Text
-        style={{
-          textAlign: "left",
-          fontSize: 35,
-          fontFamily: FONT_FAMILY,
-          color: FONT_COLOR,
-          marginBottom: "auto",
-          paddingLeft: "5%",
-          marginTop: "2%",
-        }}
-      >
-        Total:
-      </Text>
-      <PriceText
-        style={{
-          textAlign: "left",
-          fontSize: 35,
-          fontFamily: FONT_FAMILY,
-          color: FONT_COLOR,
-          marginBottom: "auto",
-          paddingLeft: "5%",
-          marginTop: "2%",
-        }}
-        price={totalPrice}
-      />
-
-      <TouchableOpacity
-        onPress={onBuy}
-        style={{
-          height: "20%",
-          paddingRight: "5%",
-          paddingLeft: "5%",
-          width: "30%",
-          marginTop: "2%",
-          marginBottom: "auto",
-          marginLeft: "auto",
-          marginRight: "auto",
-          maxWidth: 300,
-        }}
-      >
-        <SmallContainer style={{ height: "100%", width: "100%" }}>
-          <Text
-            style={{
-              marginTop: "auto",
-              marginBottom: "auto",
-              marginLeft: "auto",
-              marginRight: "auto",
-              fontSize: 20,
-              fontFamily: FONT_FAMILY,
-              color: FONT_COLOR,
-            }}
-          >
-            Buy
-          </Text>
-        </SmallContainer>
-      </TouchableOpacity>
-    </View>
-  );
-};
 const _Beer = ({ id, url, price, name, amount, onRemoveClick }) => {
   return (
     <SimpleContainer
@@ -126,8 +51,8 @@ const _Beer = ({ id, url, price, name, amount, onRemoveClick }) => {
         justifyContent: "space-between",
         padding: 0,
         minWidth: 250,
-        marginLeft:'auto',
-        marginRight:'auto',
+        marginLeft: "auto",
+        marginRight: "auto",
         marginTop: 5,
         marginBottom: 5,
       }}
@@ -220,7 +145,7 @@ const _Beer = ({ id, url, price, name, amount, onRemoveClick }) => {
   );
 };
 
-const _EmptyCardText = () => (
+const _EmptyCartText = () => (
   <View style={{ backgroundColor: BACKGROUND_COLOR, height: "100%" }}>
     <Text
       style={{
@@ -232,7 +157,7 @@ const _EmptyCardText = () => (
         marginBottom: "auto",
       }}
     >
-      The Card is empty
+      The Cart is empty
     </Text>
   </View>
 );
