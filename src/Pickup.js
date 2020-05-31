@@ -25,7 +25,7 @@ const Pickup = ({ route }) => {
         imageStyle={{ height: 70, width: 70, right: -35, top: 5 }}
         name={brewery.name}
         imageUrl={brewery.url}
-        onClick={() => navigation.navigate("Brewery", { id:brewery.itemId })}
+        onClick={() => navigation.navigate("Brewery", { id: brewery.itemId })}
       />
       <View
         style={{
@@ -42,7 +42,7 @@ const Pickup = ({ route }) => {
             url={url}
             price={price}
             name={name}
-            onBeerClick={()=>navigation.navigate("Beer", { beerId:id})}
+            onBeerClick={() => navigation.navigate("Beer", { beerId: id })}
             onAddItemClick={() => addItem(id)}
           />
         ))}
@@ -51,7 +51,14 @@ const Pickup = ({ route }) => {
   );
 };
 
-const _BeerContainer = ({ beerId, url, price, name, onAddItemClick, onBeerClick }) => {
+const _BeerContainer = ({
+  beerId,
+  url,
+  price,
+  name,
+  onAddItemClick,
+  onBeerClick,
+}) => {
   return (
     <SimpleContainer
       style={{
@@ -65,28 +72,28 @@ const _BeerContainer = ({ beerId, url, price, name, onAddItemClick, onBeerClick 
         marginRight: "auto",
       }}
     >
-       <TouchableOpacity onPress={onBeerClick}>
-      <Image
-        source={{ uri: url }}
-        style={{
-          height: 170,
-          width: 40,
-          margin: "auto",
-          marginLeft: "auto",
-          marginRight: "auto",
-        }}
-      />
-      <Text
-        style={{
-          textAlign: "center",
-          fontSize: 20,
-          fontFamily: FONT_FAMILY,
-          color: FONT_COLOR,
-          marginTop: 5,
-        }}
-      >
-        {name}
-      </Text>
+      <TouchableOpacity onPress={onBeerClick}>
+        <Image
+          source={{ uri: url }}
+          style={{
+            height: 170,
+            width: 40,
+            margin: "auto",
+            marginLeft: "auto",
+            marginRight: "auto",
+          }}
+        />
+        <Text
+          style={{
+            textAlign: "center",
+            fontSize: 20,
+            fontFamily: FONT_FAMILY,
+            color: FONT_COLOR,
+            marginTop: 5,
+          }}
+        >
+          {name}
+        </Text>
       </TouchableOpacity>
       <PriceText price={price} />
 

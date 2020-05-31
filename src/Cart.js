@@ -1,6 +1,7 @@
 import React from "react";
 import { ScrollView, View, Image, Text, TouchableOpacity } from "react-native";
 import { Icon } from "react-native-material-ui";
+import { useNavigation } from "@react-navigation/native";
 
 import { useCheckoutContext } from "./context/CheckoutContext";
 import SimpleContainer from "./SimpleContainer";
@@ -12,6 +13,8 @@ import CartBottomBar from "./CartBottomBar";
 const Cart = () => {
   const { getCheckout, getSumPrice, addItem, buy } = useCheckoutContext();
   const items = getCheckout().items;
+  const navigation = useNavigation();
+
   if (!!items && !items.length) return <_EmptyCartText />;
 
   return (
@@ -21,7 +24,7 @@ const Cart = () => {
           backgroundColor: BACKGROUND_COLOR,
           paddingTop: 10,
           paddingBottom: 100,
-          marginBottom:150
+          marginBottom: 150,
         }}
       >
         {items.map(({ id, url, price, name, amount }) => (
@@ -33,6 +36,7 @@ const Cart = () => {
             name={name}
             amount={amount}
             onRemoveClick={() => addItem(id, -1)}
+            onBeerClick={()=>navigation.navigate("Beer", { beerId: id })}
           />
         ))}
       </ScrollView>
@@ -41,7 +45,7 @@ const Cart = () => {
   );
 };
 
-const _Beer = ({ id, url, price, name, amount, onRemoveClick }) => {
+const _Beer = ({ id, url, price, name, amount, onRemoveClick, onBeerClick }) => {
   return (
     <SimpleContainer
       style={{
@@ -87,13 +91,14 @@ const _Beer = ({ id, url, price, name, amount, onRemoveClick }) => {
           />
         </TouchableOpacity>
       </View>
-      <View
+      <TouchableOpacity
         style={{
           display: "flex",
           flexDirection: "column",
           marginTop: 8,
           marginBottom: 8,
         }}
+        onPress={onBeerClick}
       >
         <Image
           source={{ uri: url }}
@@ -115,7 +120,7 @@ const _Beer = ({ id, url, price, name, amount, onRemoveClick }) => {
         >
           {name}
         </Text>
-      </View>
+      </TouchableOpacity>
       <PriceText
         price={price}
         style={{ marginTop: "auto", marginBottom: "auto", fontSize: 20 }}
