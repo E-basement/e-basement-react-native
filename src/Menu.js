@@ -3,14 +3,14 @@ import { StyleSheet, View, ScrollView } from "react-native";
 
 import BrewieHeader from "./BrewieHeader";
 import { BACKGROUND_COLOR } from "./Constants";
-import { useBrewersContext } from "./context/BrewersContext";
+import { useBreweriesContext } from "./context/BreweriesContext";
 
 const Menu = ({ navigation }) => {
-  const brewers = useBrewersContext();
+  const breweries = useBreweriesContext();
   return (
     <ScrollView style={styles.menuContainer}>
       <View style={styles.menu}>
-        {brewers.map(({ itemId, name, url }) => (
+        {breweries.map(({ itemId, name, url }) => (
           <BrewieHeader
             key={name}
             name={name}

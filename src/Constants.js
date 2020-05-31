@@ -6,17 +6,21 @@ const TOPBAR_BACKGROUND_COLOR = "#D99311";
 const LOGO_URL =
   "https://cdn.discordapp.com/attachments/707186726896140319/714517416755069008/beer-logo-vector-2.png";
 
-const SMALL_CONTAINER_BACKGROUND_COLOR = '#FAFFE4';
-const SMALL_CONTAINER_BORDER_COLOR = '#693800';
+const SMALL_CONTAINER_BACKGROUND_COLOR = "#FAFFE4";
+const SMALL_CONTAINER_BORDER_COLOR = "#693800";
 const DEFAULT_CURRENCY = "PLN";
 
-
-const BREWERS = [
+const BREWERIES = [
   {
     itemId: 1,
     name: "Profesja",
     url:
       "https://cdn.discordapp.com/attachments/707186726896140319/714456379418476564/NoPath.png",
+    description: `A craft brewery from Wrocław, founded by home brewers and beer enthusiasts - we brew beers that we gladly reach for ourselves. We come from the Wrocław home brewing environment - brewing has become our profession, and quality is a hallmark. We brew on our own equipment, we use only liquid yeast and the highest quality raw materials.`,
+    fullName: "Browar Profesja Sp. z o.o.",
+    address: "ul. Kwidzyńska 6E 51-416 Wroclaw",
+    email: "biuro@browarprofesja.pl",
+    phone: "+48 733 703 101",
     beers: [
       {
         id: 1,
@@ -85,7 +89,7 @@ const BREWERS = [
     name: "Stu Mostów",
     beers: [
       {
-        id: 1,
+        id: 20,
         name: "Inzynier",
         url:
           "https://cdn.discordapp.com/attachments/707186726896140319/714907834864762880/inzynier_piwo.png",
@@ -111,11 +115,11 @@ export {
   FONT_COLOR,
   FONT_FAMILY,
   BACKGROUND_COLOR,
-  BREWERS,
+  BREWERIES,
   CONTAINER_BACKGROUND_COLOR,
   LOGO_URL,
   TOPBAR_BACKGROUND_COLOR,
   SMALL_CONTAINER_BACKGROUND_COLOR,
   SMALL_CONTAINER_BORDER_COLOR,
-  DEFAULT_CURRENCY
+  DEFAULT_CURRENCY,
 };

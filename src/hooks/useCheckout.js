@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useBrewersContext } from "../context/BrewersContext";
+import { useBreweriesContext } from "../context/BreweriesContext";
 import { DEFAULT_CURRENCY } from '../Constants';
 
 const useCheckout = () => {
-  const beers = useBrewersContext().flatMap(({ beers }) => beers);
+  const beers = useBreweriesContext().flatMap(({ beers }) => beers);
   const [checkout, setCheckout] = useState({ items: [] });
 
   const addItem = (itemId, amount = 1) => {

@@ -1,5 +1,6 @@
 import React from "react";
 import { Text, View, Image, ScrollView, TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import { FONT_COLOR, FONT_FAMILY } from "./Constants";
 import BrewieHeader from "./BrewieHeader";
@@ -7,23 +8,24 @@ import { BACKGROUND_COLOR } from "./Constants";
 import SimpleContainer from "./SimpleContainer";
 import { Icon } from "react-native-material-ui";
 import PriceText from "./PriceText";
-import { useBrewersContext } from "./context/BrewersContext";
+import { useBreweriesContext } from "./context/BreweriesContext";
 import { useCheckoutContext } from "./context/CheckoutContext";
 
 const Pickup = ({ route }) => {
   const { itemId } = route.params;
-  const brewers = useBrewersContext();
+  const breweries = useBreweriesContext();
   const { addItem } = useCheckoutContext();
-  const brewer = brewers.find((brewer) => brewer.itemId == itemId);
+  const brewery = breweries.find((brewery) => brewery.itemId == itemId);
+  const navigation = useNavigation();
 
   return (
     <ScrollView style={{ backgroundColor: BACKGROUND_COLOR, height: "100%" }}>
       <BrewieHeader
         style={{ paddingTop: 10, paddingBottom: 10, borderRadius: 20 }}
         imageStyle={{ height: 70, width: 70, right: -35, top: 5 }}
-        name={brewer.name}
-        imageUrl={brewer.url}
-        onClick={() => {}}
+        name={brewery.name}
+        imageUrl={brewery.url}
+        onClick={() => navigation.navigate("Brewery", { id:brewery.itemId })}
       />
       <View
         style={{
@@ -33,7 +35,7 @@ const Pickup = ({ route }) => {
           paddingBottom: 30,
         }}
       >
-        {brewer.beers.map(({ id, url, price, name }) => (
+        {brewery.beers.map(({ id, url, price, name }) => (
           <_BeerContainer
             key={id}
             beerId={id}
