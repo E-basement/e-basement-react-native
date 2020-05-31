@@ -11,6 +11,7 @@ import { CheckoutContextProvider } from "./src/context/CheckoutContext";
 import Topbar from "./src/TopBar";
 import Cart from "./src/Cart";
 import BreweryDetails from "./src/BreweryDetails";
+import BeerDetails from "./src/BeerDetails";
 import Stack from "./src/context/stackNavigator";
 
 // SplashScreen.preventAutoHide();
@@ -39,6 +40,7 @@ function MainScreen() {
         <Stack.Screen name="Pickup" component={Pickup} options={Topbar} />
         <Stack.Screen name="Cart" component={Cart} options={Topbar} />
         <Stack.Screen name="Brewery" component={BreweryDetails} options={Topbar} />
+        <Stack.Screen name="Beer" component={BeerDetails} options={Topbar} />
       </Stack.Navigator>
   );
 }

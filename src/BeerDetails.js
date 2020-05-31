@@ -1,9 +1,13 @@
 import React from "react";
-import { Text, Image, ScrollView } from "react-native";
+import { Text, Image, ScrollView, TouchableOpacity } from "react-native";
+import { Icon } from "react-native-material-ui";
 
 import { useBreweriesContext } from "./context/BreweriesContext";
 import { BACKGROUND_COLOR, FONT_COLOR, FONT_FAMILY } from "./Constants";
 import SimpleContainer from "./SimpleContainer";
+import PriceText from "./PriceText";
+import SmallContainer from "./SmallContainer";
+import { useCheckoutContext } from "./context/CheckoutContext";
 
 const BeerDetails = ({ route }) => {
   const { beerId } = route.params;
@@ -11,6 +15,8 @@ const BeerDetails = ({ route }) => {
   const beer = breweries
     .flatMap(({ beers }) => beers)
     .find(({ id }) => id === beerId);
+  const { addItem } = useCheckoutContext();
+
   return (
     <ScrollView style={{ backgroundColor: BACKGROUND_COLOR, height: "100%" }}>
       <SimpleContainer
@@ -26,8 +32,8 @@ const BeerDetails = ({ route }) => {
           marginRight: "auto",
           paddingLeft: 10,
           paddingRight: 10,
-          minHeight:100,
-          maxWidth:1000
+          minHeight: 100,
+          maxWidth: 1000,
         }}
       >
         <Text
@@ -36,8 +42,8 @@ const BeerDetails = ({ route }) => {
             fontSize: 40,
             fontFamily: FONT_FAMILY,
             color: FONT_COLOR,
-            marginTop:'auto',
-            marginBottom:'auto'
+            marginTop: "auto",
+            marginBottom: "auto",
           }}
         >
           {beer.name}
@@ -56,8 +62,8 @@ const BeerDetails = ({ route }) => {
           marginRight: "auto",
           paddingLeft: 10,
           paddingRight: 10,
-          marginBottom:15,
-          maxWidth:1000
+          marginBottom: 15,
+          maxWidth: 1000,
         }}
       >
         <Image
@@ -65,7 +71,6 @@ const BeerDetails = ({ route }) => {
           style={{
             height: 362,
             width: 95,
-            margin: "auto",
             marginLeft: "auto",
             marginRight: "auto",
           }}
@@ -79,8 +84,52 @@ const BeerDetails = ({ route }) => {
           text={beer.ingredients}
           pred={"Ingredients: "}
         />
+        <PriceText style={{ fontSize: 28, marginTop: 10 }} price={beer.price} />
+        <_AddToCartButton onAddToCart={()=>addItem(beer.id)} />
       </SimpleContainer>
     </ScrollView>
+  );
+};
+
+const _AddToCartButton = ({onAddToCart}) => {
+  return (
+    <TouchableOpacity onPress={onAddToCart}>
+      <SmallContainer
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          borderWidth: 2,
+          width: "50%",
+          height: 45,
+          marginLeft: "auto",
+          marginRight: "auto",
+          marginBottom: 20,
+          justifyContent: "center",
+          maxWidth: 270,
+        }}
+      >
+        <Text
+          style={{
+            textAlign: "center",
+            fontSize: 24,
+            fontFamily: FONT_FAMILY,
+            color: FONT_COLOR,
+            marginTop: "auto",
+            marginBottom: "auto",
+          }}
+        >
+          Add to cart
+        </Text>
+        <Icon
+          name="add"
+          style={{
+            fontSize: 36,
+            marginTop: "auto",
+            marginBottom: "auto",
+          }}
+        />
+      </SmallContainer>
+    </TouchableOpacity>
   );
 };
 
