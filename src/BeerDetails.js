@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { Text, Image, ScrollView, TouchableOpacity } from "react-native";
 import { Icon } from "react-native-material-ui";
 
@@ -16,7 +16,11 @@ const BeerDetails = ({ route }) => {
     .flatMap(({ beers }) => beers)
     .find(({ id }) => id === beerId);
   const { addItem } = useCheckoutContext();
-
+  const [imgSize, setImgSize] = useState({ height: 362, width: 95 });
+  Image.getSize(beer.url, (width, height) => setImgSize({
+    width,
+    height,
+  }));
   return (
     <ScrollView style={{ backgroundColor: BACKGROUND_COLOR, height: "100%" }}>
       <SimpleContainer
@@ -69,8 +73,8 @@ const BeerDetails = ({ route }) => {
         <Image
           source={{ uri: beer.url }}
           style={{
-            height: 362,
-            width: 95,
+            height: imgSize.height,
+            width: imgSize.width,
             marginLeft: "auto",
             marginRight: "auto",
           }}
@@ -79,19 +83,21 @@ const BeerDetails = ({ route }) => {
           style={{ marginTop: 5, fontSize: 24 }}
           text={beer.description}
         />
-        {beer.ingredients && <_BeerInfoText
-          style={{ marginTop: 15 }}
-          text={beer.ingredients}
-          pred={"Ingredients: "}
-        />}
+        {beer.ingredients && (
+          <_BeerInfoText
+            style={{ marginTop: 15 }}
+            text={beer.ingredients}
+            pred={"Ingredients: "}
+          />
+        )}
         <PriceText style={{ fontSize: 28, marginTop: 10 }} price={beer.price} />
-        <_AddToCartButton onAddToCart={()=>addItem(beer.id)} />
+        <_AddToCartButton onAddToCart={() => addItem(beer.id)} />
       </SimpleContainer>
     </ScrollView>
   );
 };
 
-const _AddToCartButton = ({onAddToCart}) => {
+const _AddToCartButton = ({ onAddToCart }) => {
   return (
     <TouchableOpacity onPress={onAddToCart}>
       <SmallContainer
