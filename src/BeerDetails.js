@@ -79,11 +79,11 @@ const BeerDetails = ({ route }) => {
           style={{ marginTop: 5, fontSize: 24 }}
           text={beer.description}
         />
-        <_BeerInfoText
+        {beer.ingredients && <_BeerInfoText
           style={{ marginTop: 15 }}
           text={beer.ingredients}
           pred={"Ingredients: "}
-        />
+        />}
         <PriceText style={{ fontSize: 28, marginTop: 10 }} price={beer.price} />
         <_AddToCartButton onAddToCart={()=>addItem(beer.id)} />
       </SimpleContainer>
