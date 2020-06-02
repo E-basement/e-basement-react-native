@@ -112,10 +112,11 @@ const _Beer = ({ id, url, price, name, amount, onRemoveClick, onBeerClick }) => 
         <Text
           style={{
             textAlign: "center",
-            fontSize: 20,
+            fontSize: 14,
             fontFamily: FONT_FAMILY,
             color: FONT_COLOR,
             marginTop: 5,
+            maxWidth:100
           }}
         >
           {name}
@@ -123,12 +124,12 @@ const _Beer = ({ id, url, price, name, amount, onRemoveClick, onBeerClick }) => 
       </TouchableOpacity>
       <PriceText
         price={price}
-        style={{ marginTop: "auto", marginBottom: "auto", fontSize: 20 }}
+        style={{ marginTop: "auto", marginBottom: "auto", fontSize: 14 }}
       />
       <Text
         style={{
           textAlign: "center",
-          fontSize: 20,
+          fontSize: 14,
           fontFamily: FONT_FAMILY,
           color: FONT_COLOR,
           marginTop: "auto",
@@ -142,8 +143,8 @@ const _Beer = ({ id, url, price, name, amount, onRemoveClick, onBeerClick }) => 
         style={{
           marginTop: "auto",
           marginBottom: "auto",
-          fontSize: 20,
-          marginRight: "10%",
+          fontSize: 14,
+          marginRight: "2%",
         }}
       />
     </SimpleContainer>
