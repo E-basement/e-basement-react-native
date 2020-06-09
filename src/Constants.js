@@ -218,6 +218,11 @@ const BREWERIES = [
     name: "Stu Mostów",
     url:
       "https://cdn.discordapp.com/attachments/707186726896140319/714456046688534578/100Mostow.png",
+    description: `Improvement begins in our minds. We want to fulfil the Polish dream of new quality that will be born in our country to win global acclaim. To achieve that, we begin persistent work at the grassroots together with a team of talented, hardworking and passionate people.`,
+    fullName: "Wrocław Brewing Sp. z o.o.",
+    address: "Al. Kasztanowa 3a",
+    email: "browar@100mostow.pl",
+    phone: "+48 501 822 305",
     beers: [
       {
         id: 16,
@@ -406,6 +411,11 @@ const BREWERIES = [
     name: "AleBrowar",
     url:
       "https://cdn.discordapp.com/attachments/707186726896140319/714456308971208744/hopheads.png",
+    description: `And so at the beginning of 2012 AleBrowar was established, the new business formula on polish market. At the present point in time we don’t have vats, fermenters or packaging line – but instead we have eagerness and skills, which let us create unique beers. Maybe it will sound a bit over the top, but this project is not lacking a sense of a mission either. AleBrowar is to be a part of a revolution, which will change polish beer market. We live in exciting times, it’s time for exciting beers.`,
+    fullName: "AleBrowar Sp. z o.o.",
+    address: "ul. Juliana Węgrzynowicza 1",
+    email: "karolina@alebrowar.pl",
+    phone: "+48 535 207 067",
     beers: [
       {
         id: 31,
